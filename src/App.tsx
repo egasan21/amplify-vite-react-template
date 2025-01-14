@@ -6,7 +6,7 @@ import { generateClient } from "aws-amplify/data";
 const client = generateClient<Schema>();
 
 function App() {
-  const { signOut } = useAuthenticator();
+  const { user, signOut } = useAuthenticator();
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
   
 
@@ -28,7 +28,7 @@ function App() {
   return (
     <main>
       <button onClick={signOut}>Sign out</button>
-      <h1>My todos</h1>
+      <h1>{user?.signInDetails?.loginId}'s todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
@@ -38,7 +38,7 @@ function App() {
         ))}
       </ul>
       <div>
-        🥳 
+        🥳 Starting template for a data entry app for BCBAs.
         <br />
         <a href="https://github.com/egasan21">
           Please visit my GitHub page. Thank you.
